@@ -1,0 +1,15 @@
+{% extends 'tracker/base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+    <div class="container mt-5 justify-content-center align-items-center">
+        <form method="POST">
+            <h1 class="mb-3">Delete Item</h1>
+            <h2>Are you sure you want to delete item (<strong>{{object.name}}</strong> from day {{object.day.date}})?</h2>
+            {% csrf_token %}
+            <button class="btn btn-danger" type="submit">Yes, Delete</button>
+            <a href="{% url 'home-tracker'%}" class="btn btn-success">Cancel</a>
+        </form>
+    </div>
+{% endblock content %}

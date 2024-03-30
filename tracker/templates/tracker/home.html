@@ -1,0 +1,96 @@
+{% extends 'tracker/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="m-5"> 
+        <div class="text-center my-2">
+            <h3 class="home-content-day">(Today's Calories)</h3>
+        </div>
+        <!-- Header of Table -->
+        <div class="container border border-dark p-3" style="background-color: #e59462;">
+            <div class="row">
+                <div class="col d-flex justify-content-center align-items-center">
+                    <p class="item-desc"><strong>Remove Item</strong></p>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <p class="item-desc"><strong>Food Item</strong></p>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <p class="item-desc"><strong>Calories</strong></p>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <p class="item-desc"><strong>Protein(g)</strong></p>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <p class="item-desc"><strong>Carbs(g)</strong></p>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <p class="item-desc"><strong>Fats(g)</strong></p>
+                </div>
+            </div>
+        </div>
+        <!-- Table of Items -->
+        {% if items %}
+            {% for item in items %}
+                <div class="container border-bottom border-end border-start border-success p-3" style="background-color: #d5cae4">
+                    <div class="row">
+                        <div class="col d-flex justify-content-center align-items-center">
+                            <a href="{% url 'delete-item' item.day.date item.pk %}">
+                                <button type="button" class="btn btn-danger">X</button>
+                            </a>
+                        </div>
+                        <div class="col d-flex justify-content-center align-items-center">
+                            <p class="item-words"><strong>{{item.name|truncatewords:3}}</strong></p>
+                        </div>
+                        <div class="col d-flex justify-content-center align-items-center">
+                            <p class="item-words">{{item.calories}}</p>
+                        </div>
+                        <div class="col d-flex justify-content-center align-items-center">
+                            <p class="item-words">{{item.protein}}</p>
+                        </div>
+                        <div class="col d-flex justify-content-center align-items-center">
+                            <p class="item-words">{{item.carbs}}</p>
+                        </div>
+                        <div class="col d-flex justify-content-center align-items-center">
+                            <p class="item-words">{{item.fats}}</p>
+                        </div>
+                    </div>
+                </div> 
+            {% endfor %}
+        <!-- If No Items -->
+        {% else %}
+            <div class="container border-bottom border-end border-start border-success p-3 d-flex justify-content-center" style="background-color: #d5cae4">
+                <div class="row">
+                    <p>No Food Recorded</p>
+                </div>
+            </div>
+        {% endif %}
+        <!-- Footer of Table -->
+        <div class="container border-bottom border-start border-end border-dark p-3" style="background-color: #e59462;">
+            <div class="row">
+                <div class="col d-flex justify-content-center align-items-center">
+                    <p class="item-desc"></p>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <p class="item-desc"><strong>Total</strong></p>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <p class="item-desc"><strong>{{day.total_cal}}</strong></p>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <p class="item-desc"><strong>{{day.total_protein}}(g)</strong></p>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <p class="item-desc"><strong>{{day.total_carbs}}(g)</strong></p>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center">
+                    <p class="item-desc"><strong>{{day.total_fats}}(g)</strong></p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5">
+            <a href="{% url 'add-item' day.date %}">
+                <button type="button" class="btn btn-success">Add Food Item</button>
+            </a>
+        </div>
+{% endblock %}

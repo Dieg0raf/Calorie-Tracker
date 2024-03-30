@@ -1,0 +1,8 @@
+{% extends 'tracker/base.html' %}
+{% load static %}
+
+{% block content %}
+    {% for day in days %}
+        <p>{{day}}</p>
+    {% endfor %}
+{% endblock %}
