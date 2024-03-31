@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
-from django.db.models.signals import pre_delete 
+from django.db.models.signals import pre_delete, post_save
 from django.dispatch import receiver
 
 class Day(models.Model):
@@ -46,9 +46,9 @@ class Item(models.Model):
         return reverse('home-tracker')
 
 
-# Before deleting Item instance, it updates Day total calories
+# Before deleting an Item instance, it updates Day total calories
 @receiver(pre_delete, sender=Item)
-def delete_item(sender, instance, **kwargs):
+def deleted_item(sender, instance, **kwargs):
     Day.decrement(
         instance.day, 
         calories=instance.calories,
@@ -56,3 +56,15 @@ def delete_item(sender, instance, **kwargs):
         carbs=instance.carbs,
         fats=instance.fats,
         )
+
+# After creating an Item instance, it updates Day total calories
+@receiver(post_save, sender=Item)
+def created_item(sender, instance, created, **kwargs):
+    if created:
+        Day.increment(
+            instance.day, 
+            calories=instance.calories,
+            protein=instance.protein,
+            carbs=instance.carbs,
+            fats=instance.fats,
+            )

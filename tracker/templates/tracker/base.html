@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     {% load bootstrap5 %}
     {% bootstrap_css %}
@@ -28,12 +28,25 @@
                 </li>
                 </ul>
                 <div class="d-flex">
-                    <button class="btn btn-outline-danger me-3">Logout</button>
-                    <button class="btn btn-outline-success">Login</button>
+                    {% if user.is_authenticated %}
+                        {% if user.is_staff %}
+                            <a href="{% url 'admin:index' %}" class="btn btn-outline-success me-3">Admin Page</a>
+                        {% endif %}
+                            <a href="{% url 'logout' %}" class="btn btn-outline-danger me-3">Logout</a>
+                    {% else %}
+                        <button class="btn btn-outline-success">Login</button>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </nav>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} text-center">
+            {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
     <div class="home-content border-3 d-flex flex-column w-100">
         <div class="content flex-grow">
             {% block content %}

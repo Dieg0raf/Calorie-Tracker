@@ -1,0 +1,111 @@
+p {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+body {
+    font-family: 'Roboto' !important;
+}
+
+#navbar {
+    background-color: #E1E5EB;
+}
+
+
+.home-content {
+    height: 100vh;
+}
+
+.home-content-day {
+    margin: 0;
+}
+
+.item-words {
+    font-size: 13px;
+    margin: 0;
+}
+
+.item-desc {
+    margin: 0;
+    font-size: 16px;
+}
+
+.content-section {
+background: #ffffff;
+padding: 10px 20px;
+border-radius: 3px;
+margin-bottom: 20px;
+}
+
+.article-title {
+color: #444444;
+}
+
+a.article-title:hover {
+    color: #428bca;
+    text-decoration: none;
+}
+
+.article-content {
+    white-space: pre-line;
+}
+
+
+.article-metadata {
+    padding-bottom: 1px;
+    margin-bottom: 4px;
+}
+
+.article-metadata a:hover {
+color: #333;
+text-decoration: none;
+}
+
+.card-link {
+    color: inherit; /* Use the same color as the surrounding text */
+    text-decoration: none; /* Remove underline */
+}
+
+.card-link:hover {
+    text-decoration: none; /* Remove underline on hover */
+}
+
+.card {
+    transition: box-shadow 0.3s; /* Smooth transition for the box-shadow effect */
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7); /* Add box-shadow when hovering */
+}
+
+.card-title,
+.total-calories {
+    color: #000; /* Set color to black */
+}
+
+/* Legend */
+.legend {
+    margin-bottom: 20px;
+    display: flex; /* Add flex display */
+    justify-content: center;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Add margin to separate legend items */
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.legend-today {
+    background-color: #e59462;
+}
+
+.legend-other {
+    background-color: #d5cae4;
+}

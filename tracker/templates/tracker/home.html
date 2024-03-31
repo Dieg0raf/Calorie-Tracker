@@ -4,7 +4,11 @@
 {% block content %}
     <div class="m-5"> 
         <div class="text-center my-2">
-            <h3 class="home-content-day">(Today's Calories)</h3>
+            {% if day.date != today %}
+                <h3 class="home-content-day">({{day.date}}'s Calories)</h3>
+            {% else %}
+                <h3 class="home-content-day">(Today's Calories)</h3>
+            {% endif %}
         </div>
         <!-- Header of Table -->
         <div class="container border border-dark p-3" style="background-color: #e59462;">
@@ -16,7 +20,7 @@
                     <p class="item-desc"><strong>Food Item</strong></p>
                 </div>
                 <div class="col d-flex justify-content-center align-items-center">
-                    <p class="item-desc"><strong>Calories</strong></p>
+                    <p class="item-desc"><strong>Calories(kcal)</strong></p>
                 </div>
                 <div class="col d-flex justify-content-center align-items-center">
                     <p class="item-desc"><strong>Protein(g)</strong></p>
@@ -75,7 +79,7 @@
                     <p class="item-desc"><strong>Total</strong></p>
                 </div>
                 <div class="col d-flex justify-content-center align-items-center">
-                    <p class="item-desc"><strong>{{day.total_cal}}</strong></p>
+                    <p class="item-desc"><strong>{{day.total_cal}}(kcal)</strong></p>
                 </div>
                 <div class="col d-flex justify-content-center align-items-center">
                     <p class="item-desc"><strong>{{day.total_protein}}(g)</strong></p>

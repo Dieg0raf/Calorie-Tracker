@@ -2,7 +2,37 @@
 {% load static %}
 
 {% block content %}
-    {% for day in days %}
-        <p>{{day}}</p>
-    {% endfor %}
+    <article class="media content-section">
+        <h1 class="border-bottom border-3 border-dark my-5 text-center">All Days Tracked by {{tracker}}</h1>
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color legend-today"></div>
+                <div class="legend-text">Today's Day</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color legend-other"></div>
+                <div class="legend-text">Other Days</div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            {% for day in days %}
+                <div class="col-6 col-md-4 col-lg-3 mb-4">
+                    <a href="{% url 'detail-day' day.pk %}" class="card-link">
+                        {% if day.date == today %}
+                            <div class="card" style="background-color: #e59462;">
+                        {% else %}
+                            <div class="card" style="background-color: #d5cae4;">
+                        {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">{{ day.date }}</h5>
+                                    <p class="text-center total-calories">Calories: {{ day.total_cal }}</p>
+                                </div>
+                            </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </article>
+    
 {% endblock %}
